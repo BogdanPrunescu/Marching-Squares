@@ -10,8 +10,8 @@
 #define FILENAME_MAX_SIZE       50
 #define STEP                    8
 #define SIGMA                   200
-#define RESCALE_X               2048
-#define RESCALE_Y               2048
+#define RESCALE_X               4096
+#define RESCALE_Y               4096
 
 #define CLAMP(v, min, max) if(v < min) { v = min; } else if(v > max) { v = max; }
 
@@ -189,6 +189,7 @@ ppm_image *rescale_image(ppm_image *image) {
     return new_image;
 }
 
+/* ./tema1_par <fisier_de_intrare> <fisier_de_iesire> <nr_threaduri> */
 int main(int argc, char *argv[]) {
     if (argc < 4) {
         fprintf(stderr, "Usage: ./tema1 <in_file> <out_file> <P>\n");
@@ -204,15 +205,18 @@ int main(int argc, char *argv[]) {
 
     // 1. Rescale the image
     ppm_image *scaled_image = rescale_image(image);
+    unsigned char **grid;
 
-    // 2. Sample the grid
-    unsigned char **grid = sample_grid(scaled_image, step_x, step_y, SIGMA);
+    for (int sig = 50; sig <= 400; sig+=5) {
+        // 2. Sample the grid
+        grid = sample_grid(scaled_image, step_x, step_y, sig);
 
-    // 3. March the squares
-    march(scaled_image, grid, contour_map, step_x, step_y);
+        // 3. March the squares
+        march(scaled_image, grid, contour_map, step_x, step_y);
 
-    // 4. Write output
-    write_ppm(scaled_image, argv[2]);
+        // 4. Write output
+        write_ppm(scaled_image, argv[2]);
+    }
 
     free_resources(scaled_image, contour_map, grid, step_x);
 

@@ -11,8 +11,8 @@
 #define FILENAME_MAX_SIZE       50
 #define STEP                    8
 #define SIGMA                   200
-#define RESCALE_X               2048
-#define RESCALE_Y               2048
+#define RESCALE_X               4096
+#define RESCALE_Y               4096
 
 typedef struct {
     unsigned char red, green, blue;
