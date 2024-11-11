@@ -13,8 +13,23 @@
     - test mediu : 7.8s
     - test mare: 14.4s
 
-![Alt text](./times.png)
-- Profiling folosind Vtune
+![Alt times](./images/times.png)
 
+- Profiling folosind Vtune:
+    - test mic:
 
+    ![Alt small profiling](./images/mic1.png)
 
+    ![Alt small profiling](./images/mic2.png)
+
+    - test mediu
+
+    ![Alt medium profiling](./images/mediu1.png)
+
+    ![Alt medium profiling](./images/mediu2.png)
+
+    - test mare
+
+    ![Alt big profiling](./images/mare1.png)
+
+    ![Alt big profiling](./images/mare2.png)
