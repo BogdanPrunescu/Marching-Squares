@@ -6,6 +6,8 @@
 
 Marching Squares este un algoritm de grafica introdus in anii 1980 care poate fi folosit pentru delimitarea contururilor dintr-o imagine. El poate fi folosit pentru a desena linii de altitudine pe harti topografice, temperaturi pe harti termice, puncte de presiune pe harti de camp de presiune, etc.
 
+## Exemplu
+<img src="./images/in_mic.png" width="300"/> <img src="./images/out_mic.png" width="300"/> 
 ## Week 1
 
 - Creare repo github si README
