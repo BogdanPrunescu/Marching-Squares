@@ -69,63 +69,75 @@ Profiling:
 
 - Test mic:
     - 2 threaduri:
+
         ![Alt big profiling](./images/mic_pthreads_2_1.png)
 
         ![Alt big profiling](./images/mic_pthreads_2_2.png)
     
     - 4 threaduri:
+
         ![Alt big profiling](./images/mic_pthreads_4_1.png)
 
         ![Alt big profiling](./images/mic_pthreads_4_2.png)
 
     - 8 threaduri:
+
         ![Alt big profiling](./images/mic_pthreads_8_1.png)
 
         ![Alt big profiling](./images/mic_pthreads_8_2.png)
 
     - 16 threaduri:
+
         ![Alt big profiling](./images/mic_pthreads_16_1.png)
 
         ![Alt big profiling](./images/mic_pthreads_16_2.png)
 
 - Test mediu:
     - 2 threaduri:
+    
         ![Alt big profiling](./images/mediu_pthreads_2_1.png)
 
         ![Alt big profiling](./images/mediu_pthreads_2_2.png)
     
     - 4 threaduri:
+
         ![Alt big profiling](./images/mediu_pthreads_4_1.png)
 
         ![Alt big profiling](./images/mediu_pthreads_4_2.png)
 
     - 8 threaduri:
+
         ![Alt big profiling](./images/mediu_pthreads_8_1.png)
 
         ![Alt big profiling](./images/mediu_pthreads_8_2.png)
 
     - 16 threaduri:
+
         ![Alt big profiling](./images/mediu_pthreads_16_1.png)
 
         ![Alt big profiling](./images/mediu_pthreads_16_2.png)
 
 - Test mare:
     - 2 threaduri:
+
         ![Alt big profiling](./images/mare_pthreads_2_1.png)
 
         ![Alt big profiling](./images/mare_pthreads_2_2.png)
     
     - 4 threaduri:
+
         ![Alt big profiling](./images/mare_pthreads_4_1.png)
 
         ![Alt big profiling](./images/mare_pthreads_4_2.png)
 
     - 8 threaduri:
+
         ![Alt big profiling](./images/mare_pthreads_8_1.png)
 
         ![Alt big profiling](./images/mare_pthreads_8_2.png)
 
     - 16 threaduri:
+    
         ![Alt big profiling](./images/mare_pthreads_16_1.png)
 
         ![Alt big profiling](./images/mare_pthreads_16_2.png)
