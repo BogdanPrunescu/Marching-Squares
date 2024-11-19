@@ -63,13 +63,7 @@ Variatie timp secvential dupa dimensiunea inputului:
 
 Timpi de executie in functie de threaduri:
 
-![Alt big profiling](./images/mic_pthreads.png)
-
-
-![Alt big profiling](./images/mediu_pthreads.png)
-
-
-![Alt big profiling](./images/mare_pthreads.png)
+![Alt big profiling](./images/mic_mare_mediu_pthreads.png)
 
 Profiling:
 
