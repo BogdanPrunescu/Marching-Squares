@@ -67,18 +67,14 @@ Timpi de executie in functie de threaduri:
 
 Profiling:
 
-- Test mic:
+- Test mic (2048 x 2048):
     - 2 threaduri:
 
         ![Alt big profiling](./images/mic_pthreads_2_1.png)
 
         ![Alt big profiling](./images/mic_pthreads_2_2.png)
     
-    - 4 threaduri:
-
-        ![Alt big profiling](./images/mic_pthreads_4_1.png)
-
-        ![Alt big profiling](./images/mic_pthreads_4_2.png)
+    Pentru 2 threaduri se observa ca cele 2 threaduri sunt folosite la maxim in cel mai mare procent din timp. 
 
     - 8 threaduri:
 
@@ -86,24 +82,19 @@ Profiling:
 
         ![Alt big profiling](./images/mic_pthreads_8_2.png)
 
+    Pentru ca testul este prea mic odata cu cresterea numarului de threaduri nu se observa o eficienta foarte buna utilizarii core-urilor.
+
     - 16 threaduri:
 
         ![Alt big profiling](./images/mic_pthreads_16_1.png)
 
         ![Alt big profiling](./images/mic_pthreads_16_2.png)
 
-- Test mediu:
-    - 2 threaduri:
-    
-        ![Alt big profiling](./images/mediu_pthreads_2_1.png)
+    Deja pentru 16 threaduri sunt folosite toate pentru foarte putin timp, folosing on average 7 threaduri.
 
-        ![Alt big profiling](./images/mediu_pthreads_2_2.png)
-    
-    - 4 threaduri:
+- Test mediu (4096 x 4096):
 
-        ![Alt big profiling](./images/mediu_pthreads_4_1.png)
-
-        ![Alt big profiling](./images/mediu_pthreads_4_2.png)
+    Testul mediu beneficiaza de o utilizare mai buna a threadurilor, dar 16 threaduri inca sunt prea mult pentru acest task, utilizandu-le complet aproape deloc.
 
     - 8 threaduri:
 
@@ -117,28 +108,14 @@ Profiling:
 
         ![Alt big profiling](./images/mediu_pthreads_16_2.png)
 
-- Test mare:
-    - 2 threaduri:
+- Test mare (10000 x 10000):
 
-        ![Alt big profiling](./images/mare_pthreads_2_1.png)
-
-        ![Alt big profiling](./images/mare_pthreads_2_2.png)
+    Testul mare beneficiaza la maxim de paralelism si se observa si o o diferenta in timpul petrecut in functii. Un nou bottleneck este functia de rescale a imaginii.
     
-    - 4 threaduri:
-
-        ![Alt big profiling](./images/mare_pthreads_4_1.png)
-
-        ![Alt big profiling](./images/mare_pthreads_4_2.png)
-
-    - 8 threaduri:
-
-        ![Alt big profiling](./images/mare_pthreads_8_1.png)
-
-        ![Alt big profiling](./images/mare_pthreads_8_2.png)
-
     - 16 threaduri:
     
         ![Alt big profiling](./images/mare_pthreads_16_1.png)
 
         ![Alt big profiling](./images/mare_pthreads_16_2.png)
-
+    
+    Se poate vedea ca pentru 16 threaduri sunt folosite on average 11 si cel mai mare procent din timp 15 sau 16 threaduri.
