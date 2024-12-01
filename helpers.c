@@ -92,10 +92,13 @@ ppm_image *read_ppm(const char *filename) {
 
 // Source: [1]
 void write_ppm(ppm_image *img, const char *filename) {
+    static int count = 0;
+    char *output_filename[256];
     FILE *fp;
 
     // open file for output
-    fp = fopen(filename, "wb");
+    snprintf(output_filename, sizeof(output_filename), "%s_%d.ppm", filename, count++);
+    fp = fopen(output_filename, "wb+");
     if (!fp) {
         fprintf(stderr, "Unable to open file '%s'\n", filename);
         exit(1);

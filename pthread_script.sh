@@ -10,6 +10,7 @@ for i in "${!input_files[@]}"; do
   for threads in "${thread_counts[@]}"; do
     test_name="test_${input_files[$i]}_${threads}"
     echo "Running test: $test_name"
-    vtune -collect hotspots -r "$test_name" ./ms_pthread "./checker/inputs/${input_files[$i]}.ppm" "./checker/outputs/${output_files[$i]}.ppm" "$threads"
+    vtune -collect hotspots -r "$test_name" ./ms_pthread "./checker/inputs/${input_files[$i]}.ppm" "./checker/outputs/${output_files[$i]}" "$threads"
+    rm -rf ./checker/outputs/*
   done
 done

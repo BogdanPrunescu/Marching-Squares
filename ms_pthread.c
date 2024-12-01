@@ -23,6 +23,7 @@ struct data {
     unsigned char** grid;
     ppm_image *image;
     ppm_image *new_image;
+    ppm_image *image_copy;
     ppm_image **contour_map;
     int id;
     int P;
@@ -182,6 +183,36 @@ void rescale_image(ppm_image *image, ppm_image *new_image, int id, int P) {
 
 }
 
+ppm_image* copy_image(ppm_image* image) {
+
+    ppm_image *copy = (ppm_image *)malloc(sizeof(ppm_image));
+    if (!copy) {
+        fprintf(stderr, "Unable to allocate memory\n");
+        exit(1);
+    }
+    if (image->x <= RESCALE_X) {
+        copy->x = image->x;
+        copy->y = image->y;
+    } else {
+        copy->x = RESCALE_X;
+        copy->y = RESCALE_Y;
+    }
+
+    copy->data = (ppm_pixel*)malloc(image->x * image->y * sizeof(ppm_pixel));
+
+    if (!copy) {
+        fprintf(stderr, "Unable to allocate memory\n");
+        exit(1);
+    }
+    return copy;
+}
+
+void free_image(ppm_image* image) {
+    free(image->data);
+    free(image);
+}
+
+char path[256];
 // function that will be called 
 void* f(void *arg) {
 
@@ -202,7 +233,7 @@ void* f(void *arg) {
         x.image = x.new_image;
     }
 
-    for (int sig = 50; sig <= 400; sig+=5) {
+    for (int sig = 10; sig <= 255; sig+=3) {
         // calling the sample grid function from every thread with the specific id
         sample_grid(x.grid, x.image, x.step_x, x.step_y, sig, x.id, x.P);
 
@@ -210,7 +241,14 @@ void* f(void *arg) {
         pthread_barrier_wait(x.barrier);
 
         // calling the march function to update the image from every thread with the specific id
-        march(x.image, x.grid, x.contour_map, x.step_x, x.step_y, x.id, x.P);
+        march(x.image_copy, x.grid, x.contour_map, x.step_x, x.step_y, x.id, x.P);
+
+        pthread_barrier_wait(x.barrier);
+
+        // if (x.id == 0)
+        //     write_ppm(x.image_copy, path);
+
+        // pthread_barrier_wait(x.barrier);
     }
 }
 
@@ -219,10 +257,12 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Usage: ./tema1 <in_file> <out_file> <P>\n");
         return 1;
     }
+    strcpy(path, argv[2]);
 
     ppm_image *image = read_ppm(argv[1]);
     ppm_image *new_image = NULL;
     ppm_image *print_image = image;
+    ppm_image *image_copy = copy_image(image);
     int step_x = STEP;
     int step_y = STEP;
     int n_threads = atoi(argv[3]);
@@ -278,6 +318,7 @@ int main(int argc, char *argv[]) {
         arg[i].grid = grid;
         arg[i].image = image;
         arg[i].new_image = new_image;
+        arg[i].image_copy = image_copy;
         arg[i].P = n_threads;
         arg[i].id = i;
         arg[i].contour_map = contour_map;
@@ -298,12 +339,12 @@ int main(int argc, char *argv[]) {
     pthread_barrier_destroy(&barrier);
 
     // choosing the pointer to the image to pring
-    if (new_image != NULL) {
-        print_image = new_image;
-    }
+    // if (new_image != NULL) {
+    //     print_image = new_image;
+    // }
     
-    //4. Write output
-    write_ppm(print_image, argv[2]);
+    // //4. Write output
+    // write_ppm(print_image, argv[2]);
 
     // freeing the allocated memory
     free_resources(image, new_image, contour_map, grid, step_x);

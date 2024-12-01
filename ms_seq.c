@@ -8,8 +8,8 @@
 #define FILENAME_MAX_SIZE       50
 #define STEP                    8
 #define SIGMA                   200
-#define RESCALE_X               2048
-#define RESCALE_Y               2048
+#define RESCALE_X               4096
+#define RESCALE_Y               4096
 
 #define CLAMP(v, min, max) if(v < min) { v = min; } else if(v > max) { v = max; }
 
@@ -238,28 +238,21 @@ int main(int argc, char *argv[]) {
     // 1. Rescale the image
     ppm_image *scaled_image = rescale_image(image);
     unsigned char **grid;
+    ppm_image* image_copy = copy_image(scaled_image);
 
     for (int sig = 10; sig <= 255; sig+=3) {
 
         // 2. Sample the grid
         grid = sample_grid(scaled_image, step_x, step_y, sig);
 
-        ppm_image* image_copy = copy_image(scaled_image);
-
         // 3. March the squares
         march(image_copy, grid, contour_map, step_x, step_y);
 
         // 4. Write output
-        write_ppm(image_copy, argv[2]);
-
-        for (int i = 0; i <= image->x / step_x; i++) {
-            free(grid[i]);
-        }
-        free(grid);
-        free_image(image_copy);
+        // write_ppm(image_copy, argv[2]);
     }
 
-    free_resources(scaled_image, contour_map, grid, step_x);
-
+    free_image(image_copy);
+    free_resources(image, contour_map, grid, step_x);
     return 0;
 }

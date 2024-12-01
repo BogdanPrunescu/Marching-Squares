@@ -144,10 +144,10 @@ void free_resources(ppm_image *image, ppm_image **contour_map, unsigned char **g
     }
     free(contour_map);
 
-    for (int i = 0; i <= image->x / step_x; i++) {
-        free(grid[i]);
-    }
-    free(grid);
+    // for (int i = 0; i <= image->x / step_x; i++) {
+    //     free(grid[i]);
+    // }
+    // free(grid);
 
     free(image->data);
     free(image);
@@ -196,6 +196,39 @@ ppm_image *rescale_image(ppm_image *image) {
     return new_image;
 }
 
+ppm_image* copy_image(ppm_image* image) {
+
+    ppm_image *copy = (ppm_image *)malloc(sizeof(ppm_image));
+    if (!copy) {
+        fprintf(stderr, "Unable to allocate memory\n");
+        exit(1);
+    }
+    copy->x = image->x;
+    copy->y = image->y;
+
+    copy->data = (ppm_pixel*)malloc(image->x * image->y * sizeof(ppm_pixel));
+
+    if (!copy) {
+        fprintf(stderr, "Unable to allocate memory\n");
+        exit(1);
+    }
+
+    for (int i = 0; i < copy->x; i++) {
+        for (int j = 0; j < copy->y; j++) {
+            copy->data[i * copy->y + j].red = image->data[i * image->y + j].red;
+            copy->data[i * copy->y + j].green = image->data[i * image->y + j].green;
+            copy->data[i * copy->y + j].blue = image->data[i * image->y + j].blue;
+        }
+    }
+
+    return copy;
+}
+
+void free_image(ppm_image* image) {
+    free(image->data);
+    free(image);
+}
+
 /* ./tema1_par <fisier_de_intrare> <fisier_de_iesire> <nr_threaduri> */
 int main(int argc, char *argv[]) {
     if (argc < 4) {
@@ -214,20 +247,24 @@ int main(int argc, char *argv[]) {
     ppm_image *scaled_image = rescale_image(image);
     unsigned char **grid;
     int sig;
+    ppm_image* image_copy = copy_image(scaled_image);
 
-    #pragma omp parallel for private(sig)
-    for (int sig = 50; sig <= 400; sig+=5) {
+    //#pragma omp parallel for private(sig, grid)
+    for (sig = 10; sig <= 255; sig+=3) {
+        
         // 2. Sample the grid
         grid = sample_grid(scaled_image, step_x, step_y, sig);
 
         // 3. March the squares
-        march(scaled_image, grid, contour_map, step_x, step_y);
+        march(image_copy, grid, contour_map, step_x, step_y);
 
         // 4. Write output
-        write_ppm(scaled_image, argv[2]);
+        // write_ppm(image_copy, argv[2]);
+
     }
 
-    free_resources(scaled_image, contour_map, grid, step_x);
+    // free_image(image_copy);
+    free_resources(image, contour_map, grid, step_x);
 
     return 0;
 }
