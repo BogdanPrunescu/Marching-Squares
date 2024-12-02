@@ -8,6 +8,7 @@ Marching Squares este un algoritm de grafica introdus in anii 1980 care poate fi
 
 ## Exemplu
 Programul construieste imagini care constituie conturul reliefului pentru diferite altitudini. Prima poza este inputului iar restul sunt calculate folosing sigma = 208, 136 si 61.
+
 <img src="./images/test_image.jpg" width="400"/> <img src="./images/test_208.jpg" width="400"/>
 <img src="./images/test_136.jpg" width="400"/> <img src="./images/test_61.jpg" width="400"/>  
 ## Week 1
