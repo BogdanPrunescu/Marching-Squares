@@ -240,7 +240,8 @@ int main(int argc, char *argv[]) {
     unsigned char **grid;
     ppm_image* image_copy = copy_image(scaled_image);
 
-    for (int sig = 10; sig <= 255; sig+=3) {
+    int sig = 200;
+    //for (int sig = 10; sig <= 255; sig+=3) {
 
         // 2. Sample the grid
         grid = sample_grid(scaled_image, step_x, step_y, sig);
@@ -249,10 +250,10 @@ int main(int argc, char *argv[]) {
         march(image_copy, grid, contour_map, step_x, step_y);
 
         // 4. Write output
-        // write_ppm(image_copy, argv[2]);
-    }
+        write_ppm(image_copy, argv[2]);
+    //}
 
-    free_image(image_copy);
+    //free_image(image_copy);
     free_resources(image, contour_map, grid, step_x);
     return 0;
 }

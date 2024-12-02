@@ -14,6 +14,8 @@
 
 #define CLAMP(v, min, max) if(v < min) { v = min; } else if(v > max) { v = max; }
 
+int num_threads;
+
 // Creates a map between the binary configuration (e.g. 0110_2) and the corresponding pixels
 // that need to be set on the output image. An array is used for this map since the keys are
 // binary numbers in 0-15. Contour images are located in the './contours' directory.
@@ -37,7 +39,7 @@ ppm_image **init_contour_map() {
 // Used to create the complete contour image.
 void update_image(ppm_image *image, ppm_image *contour, int x, int y) {
     int i, j;
-    #pragma omp parallel for private(i, j) collapse(2)
+    #pragma omp parallel for private(i, j) collapse(2) schedule(auto)
     for (i = 0; i < contour->x; i++) {
         for (j = 0; j < contour->y; j++) {
             int contour_pixel_index = contour->x * i + j;
@@ -72,7 +74,7 @@ unsigned char **sample_grid(ppm_image *image, int step_x, int step_y, unsigned c
         }
     }
 
-    #pragma omp parallel for private(i, j) collapse(2)
+    #pragma omp parallel for private(i, j) collapse(2) schedule(auto)
     for (i = 0; i < p; i++) {
         for (j = 0; j < q; j++) {
             ppm_pixel curr_pixel = image->data[i * step_x * image->y + j * step_y];
@@ -90,7 +92,7 @@ unsigned char **sample_grid(ppm_image *image, int step_x, int step_y, unsigned c
 
     // last sample points have no neighbors below / to the right, so we use pixels on the
     // last row / column of the input image for them
-    #pragma omp parallel for private(i)
+    #pragma omp parallel for private(i) schedule(auto)
     for (i = 0; i < p; i++) {
         ppm_pixel curr_pixel = image->data[i * step_x * image->y + image->x - 1];
 
@@ -103,7 +105,7 @@ unsigned char **sample_grid(ppm_image *image, int step_x, int step_y, unsigned c
         }
     }
 
-    #pragma omp parallel for private(j)
+    #pragma omp parallel for private(j) schedule(auto)
     for (j = 0; j < q; j++) {
         ppm_pixel curr_pixel = image->data[(image->x - 1) * image->y + j * step_y];
 
@@ -127,7 +129,7 @@ void march(ppm_image *image, unsigned char **grid, ppm_image **contour_map, int 
     int p = image->x / step_x;
     int q = image->y / step_y;
     int i, j;
-    #pragma omp parallel for private(i, j) collapse(2)
+    #pragma omp parallel for private(i, j) collapse(2) schedule(auto)
     for (i = 0; i < p; i++) {
         for (j = 0; j < q; j++) {
             unsigned char k = 8 * grid[i][j] + 4 * grid[i][j + 1] + 2 * grid[i + 1][j + 1] + 1 * grid[i + 1][j];
@@ -177,7 +179,7 @@ ppm_image *rescale_image(ppm_image *image) {
     }
 
     // use bicubic interpolation for scaling
-    #pragma omp parallel for private(i, j) collapse(2)
+    #pragma omp parallel for private(i, j) collapse(2) schedule(auto)
     for (i = 0; i < new_image->x; i++) {
         for (j = 0; j < new_image->y; j++) {
             float u = (float)i / (float)(new_image->x - 1);
@@ -236,6 +238,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
     omp_set_num_threads(atoi(argv[3]));
+    num_threads = atoi(argv[3]);
     ppm_image *image = read_ppm(argv[1]);
     int step_x = STEP;
     int step_y = STEP;
@@ -246,10 +249,8 @@ int main(int argc, char *argv[]) {
     // 1. Rescale the image
     ppm_image *scaled_image = rescale_image(image);
     unsigned char **grid;
-    int sig;
     ppm_image* image_copy = copy_image(scaled_image);
-
-    //#pragma omp parallel for private(sig, grid)
+    int sig;
     for (sig = 10; sig <= 255; sig+=3) {
         
         // 2. Sample the grid
