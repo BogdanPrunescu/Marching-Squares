@@ -2,9 +2,9 @@ import matplotlib.pyplot as plt
 
 # Data for the tests
 threads = [1, 2, 4, 8, 16]
-mic = [2.121, 1.125, 0.647, 0.494, 0.396]
-mediu = [7.631, 4.254, 2.466, 1.554, 1.187]
-mare = [16.292, 7.927, 4.407, 2.676, 2.195]
+mic = [2, 1.9, 1.58, 1.83, 2.21]
+mediu = [8, 6.15, 4.7, 4.9, 5.67]
+mare = [17.6, 9.04, 5.68, 5.72, 8.78]
 
 # Plot all three on a single graph
 plt.figure(figsize=(8, 6))

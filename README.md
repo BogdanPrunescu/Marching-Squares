@@ -174,3 +174,59 @@ Profiling:
         ![Alt big profiling](./images/openmp/mare_openmp_16_1.png)
 
         ![Alt big profiling](./images/openmp/mare_openmp_16_2.png)
+
+## Week 4
+
+### Implementare mpi
+
+Din timpii de executie se observa ca mpi este mult mai ineficient decat pthreads si openmp de la un numar
+de threaduri din cauza overhead-ului de comunicare. Folosing mpi, timpul de executie scade pana la 4 procese,
+si incepe sa creasca pentru 8 si 16, cel mai mult timp fiind ocupat de bariere si de functiile de scatter si
+gather, care trebuie apelata de fiecare data pentru construirea rezultatului
+
+Timpi de executie in functie de threaduri:
+
+![Alt big profiling](./images/mpi/mic_mare_mediu_mpi.png)
+
+Profiling:
+
+- Test mic (2048 x 2048):
+    - 2 threaduri:
+
+        ![Alt big profiling](./images/mpi/mic_mpi_2_1.png)
+
+        ![Alt big profiling](./images/mpi/mic_mpi_2_2.png)
+
+    - 8 threaduri:
+
+        ![Alt big profiling](./images/mpi/mic_mpi_8_1.png)
+
+        ![Alt big profiling](./images/mpi/mic_mpi_8_2.png)
+
+    - 16 threaduri:
+
+        ![Alt big profiling](./images/mpi/mic_mpi_16_1.png)
+
+        ![Alt big profiling](./images/mpi/mic_mpi_16_2.png)
+
+- Test mediu (4096 x 4096):
+
+    - 8 threaduri:
+
+        ![Alt big profiling](./images/mpi/mediu_mpi_8_1.png)
+
+        ![Alt big profiling](./images/mpi/mediu_mpi_8_2.png)
+
+    - 16 threaduri:
+
+        ![Alt big profiling](./images/mpi/mediu_mpi_16_1.png)
+
+        ![Alt big profiling](./images/mpi/mediu_mpi_16_2.png)
+
+- Test mare (8192 x 8192):
+    
+    - 16 threaduri:
+    
+        ![Alt big profiling](./images/mpi/mare_mpi_16_1.png)
+
+        ![Alt big profiling](./images/mpi/mare_mpi_16_2.png)
