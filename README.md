@@ -230,3 +230,19 @@ Profiling:
         ![Alt big profiling](./images/mpi/mare_mpi_16_1.png)
 
         ![Alt big profiling](./images/mpi/mare_mpi_16_2.png)
+
+#### Observatie MPI
+
+Zonele de timp afisate cu portocaliu in call stackul functiilor din algoritm semnifica faptul ca threadul respectiv este blocat in acea fractiune de timp. Motivul este blocarea threadurilor de catre functia MPI_Recv.
+
+### Comparatie algoritmi
+
+Pentru toate testele am trasat un grafic cu timpii de executie pe diferiti algoritmi paraleli. Pentru testul mic se poate obseva ca pthread si openmp sunt cele mai bune alegerii, avand mici diferente de timpi in functie de cate threaduri se aleg. Intersectia timpiilor pentru cele doua se afla undeva intre 5 si 6 threaduri.
+
+![Alt big profiling](./images/compare_mic.png)
+
+Atat pentru testul mare, cat si cel mediu se observa aceleasi tendinte in modificarea timpului, doar ca intre openmp si pthreads diferenta este mult mai nesemnificativa.
+
+![Alt big profiling](./images/compare_mediu.png)
+
+![Alt big profiling](./images/compare_mare.png)
