@@ -245,4 +245,65 @@ Atat pentru testul mare, cat si cel mediu se observa aceleasi tendinte in modifi
 
 ![Alt big profiling](./images/compare_mediu.png)
 
-![Alt big profiling](./images/compare_mare.png)
+images/openmp_mpi/Execution_time_openmp_MPI_mic.gif
+
+## Week 5
+
+### Implementare openmp + mpi
+
+- Test mic (2048 x 2048):
+
+![Alt big profiling](./images/openmp_mpi/Execution_time_openmp_MPI_mic.gif)
+
+- 2 threaduri openmp 8 threaduri mpi
+![Alt big profiling](./images/openmp_mpi/mic_2_8.png)
+
+![Alt big profiling](./images/openmp_mpi/mic_2_8_1.png)
+
+- 4 threaduri openmp 4 threaduri mpi
+![Alt big profiling](./images/openmp_mpi/mic_4_4.png)
+
+![Alt big profiling](./images/openmp_mpi/mic_4_4_1.png)
+
+- 8 threaduri openmp 2 threaduri mpi
+![Alt big profiling](./images/openmp_mpi/mic_8_2.png)
+
+![Alt big profiling](./images/openmp_mpi/mic_8_2_1.png)
+
+- Test mediu (4096 x 4096):
+
+![Alt big profiling](./images/openmp_mpi/Execution_time_openmp_MPI_mediu.gif)
+
+- 2 threaduri openmp 8 threaduri mpi
+![Alt big profiling](./images/openmp_mpi/mediu_2_8.png)
+
+![Alt big profiling](./images/openmp_mpi/mediu_2_8_1.png)
+
+- 4 threaduri openmp 4 threaduri mpi
+![Alt big profiling](./images/openmp_mpi/mediu_4_4.png)
+
+![Alt big profiling](./images/openmp_mpi/mediu_4_4_1.png)
+
+- 8 threaduri openmp 2 threaduri mpi
+![Alt big profiling](./images/openmp_mpi/mediu_8_2.png)
+
+![Alt big profiling](./images/openmp_mpi/mediu_8_2_1.png)
+
+- Test mare (8192 x 8192):
+
+![Alt big profiling](./images/openmp_mpi/Execution_time_openmp_MPI_mare.gif)
+
+- 2 threaduri openmp 8 threaduri mpi
+![Alt big profiling](./images/openmp_mpi/mare_2_8.png)
+
+![Alt big profiling](./images/openmp_mpi/mare_2_8_1.png)
+
+- 4 threaduri openmp 4 threaduri mpi
+![Alt big profiling](./images/openmp_mpi/mare_4_4.png)
+
+![Alt big profiling](./images/openmp_mpi/mare_4_4_1.png)
+
+- 8 threaduri openmp 2 threaduri mpi
+![Alt big profiling](./images/openmp_mpi/mare_8_2.png)
+
+![Alt big profiling](./images/openmp_mpi/mare_8_2_1.png)
