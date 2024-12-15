@@ -253,7 +253,9 @@ images/openmp_mpi/Execution_time_openmp_MPI_mic.gif
 
 - Test mic (2048 x 2048):
 
-![Alt big profiling](./images/openmp_mpi/Execution_time_openmp_MPI_mic.gif)
+Testul mic are timpi foarte apropiati pentru varitatii ale numarului de threaduri si procese in comparatie cu testul mediu si mare. Mai jos am atasat poze din vtune pentru timpii cei mai buni, pentru valori de threaduri si procese ale caror produs dau 16 (8, 2), (4, 4), (2, 8).
+
+![Alt big profiling](./images/openmp_mpi/Execution_time_openmp_MPI_mic.png)
 
 - 2 threaduri openmp 8 threaduri mpi
 ![Alt big profiling](./images/openmp_mpi/mic_2_8.png)
@@ -270,9 +272,13 @@ images/openmp_mpi/Execution_time_openmp_MPI_mic.gif
 
 ![Alt big profiling](./images/openmp_mpi/mic_8_2_1.png)
 
+Din profiling se observa ca programul consuma o buna parte din timpul executiei pe functii din MPI (Gather, Barrier, Scatter).
+
 - Test mediu (4096 x 4096):
 
-![Alt big profiling](./images/openmp_mpi/Execution_time_openmp_MPI_mediu.gif)
+In testul mediu se observa de asemenea ca in centrul graficului se afla cei mai buni timpi din punct de vedere a combinarii algoritmilor, pentru ca pe axa x=1 sunt timpii de la openMP descrisi mai sus, iar pe axa y=1 se alfa timpii de executie de la MPI.
+
+![Alt big profiling](./images/openmp_mpi/Execution_time_openmp_MPI_mediu.png)
 
 - 2 threaduri openmp 8 threaduri mpi
 ![Alt big profiling](./images/openmp_mpi/mediu_2_8.png)
@@ -289,9 +295,13 @@ images/openmp_mpi/Execution_time_openmp_MPI_mic.gif
 
 ![Alt big profiling](./images/openmp_mpi/mediu_8_2_1.png)
 
+Aici, MPI-ul nu mai consuma un procent atat de mare din timpul de executie, cum se intampla la testul mic.
+
 - Test mare (8192 x 8192):
 
-![Alt big profiling](./images/openmp_mpi/Execution_time_openmp_MPI_mare.gif)
+Pentru testul mare, exista o imbunatarie a timpilor, dar nu asa de proeminenta ca la testul mediu, unde timpii de injumatateau atunci cand de la MPI pur se trecea la algortimul hibrid.
+
+![Alt big profiling](./images/openmp_mpi/Execution_time_openmp_MPI_mare.png)
 
 - 2 threaduri openmp 8 threaduri mpi
 ![Alt big profiling](./images/openmp_mpi/mare_2_8.png)
@@ -307,3 +317,5 @@ images/openmp_mpi/Execution_time_openmp_MPI_mic.gif
 ![Alt big profiling](./images/openmp_mpi/mare_8_2.png)
 
 ![Alt big profiling](./images/openmp_mpi/mare_8_2_1.png)
+
+Din punct de vedere al profiling-ului, nu exista diferente majore intre observatiile de la testul mediu si rezultatele de la cel mare.
