@@ -1,5 +1,3 @@
-// Author: APD team, except where source was noted
-
 #include "helpers.h"
 #include <stdio.h>
 #include <stdlib.h>

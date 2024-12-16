@@ -1,5 +1,3 @@
-// Author: APD team, except where source was noted
-
 #ifndef HELPERS_H
 #define HELPERS_H
 

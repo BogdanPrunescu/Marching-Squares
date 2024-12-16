@@ -37,13 +37,11 @@ mpi = [16.292, 9.04, 5.68, 5.72, 8.78]
 # mediu = [8, 4.202, 2.398, 1.500, 1.195]
 # mare = [16.292, 7.915, 4.421, 2.684, 1.940]
 
-# Plot all three on a single graph
 plt.figure(figsize=(8, 6))
 plt.plot(threads, pthreads, marker='o', label='pthreads', color='blue')
 plt.plot(threads, openmp, marker='o', label='openmp', color='green')
 plt.plot(threads, mpi, marker='o', label='mpi', color='red')
 
-# Add title, labels, grid, and legend
 plt.title('8192x8192 test Execution time')
 plt.xlabel('Number of Threads')
 plt.ylabel('Execution Time (s)')
@@ -51,5 +49,4 @@ plt.grid(True)
 plt.legend()
 plt.tight_layout()
 
-# Show the plot
 plt.show()

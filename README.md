@@ -319,3 +319,76 @@ Pentru testul mare, exista o imbunatarie a timpilor, dar nu asa de proeminenta c
 ![Alt big profiling](./images/openmp_mpi/mare_8_2_1.png)
 
 Din punct de vedere al profiling-ului, nu exista diferente majore intre observatiile de la testul mediu si rezultatele de la cel mare.
+
+## Week 6
+
+### Implementare pthreads + mpi
+
+- Test mic (2048 x 2048):
+
+Testul mic are timpi foarte apropiati pentru varitatii ale numarului de threaduri si procese in comparatie cu testul mediu si mare. Performantele nu sunt considerabile, avand in vedere nivelul de complexitate al algoritmului hibrid, in comparatie cu folosirea doar a threadurilor, fara MPI.
+
+![Alt big profiling](./images/pthreads_mpi/Execution_time_pthreads_MPI_mic.png)
+
+- 2 threaduri openmp 8 threaduri pthreads
+![Alt big profiling](./images/pthreads_mpi/mic_2_8.png)
+
+![Alt big profiling](./images/pthreads_mpi/mic_2_8_1.png)
+
+- 4 threaduri openmp 4 threaduri pthreads
+![Alt big profiling](./images/pthreads_mpi/mic_4_4.png)
+
+![Alt big profiling](./images/pthreads_mpi/mic_4_4_1.png)
+
+- 8 threaduri openmp 2 threaduri pthreads
+![Alt big profiling](./images/pthreads_mpi/mic_8_2.png)
+
+![Alt big profiling](./images/pthreads_mpi/mic_8_2_1.png)
+
+Din profiling se observa ca programul consuma o buna parte din timpul executiei pe functii din MPI (Gather, Barrier, Scatter), la fel ca la algoritmul hibrid MPI+openmp, desi timpii sunt mai mari in acest caz.
+
+- Test mediu (4096 x 4096):
+
+In testul mediu timpii sunt foarte asemanatori cu algoritmul hibrid MPI+openmp, dar in cazul acesta timpii sunt din nou mai mari.
+
+![Alt big profiling](./images/pthreads_mpi/Execution_time_pthreads_MPI_mediu.png)
+
+- 2 threaduri openmp 8 threaduri pthreads
+![Alt big profiling](./images/pthreads_mpi/mediu_2_8.png)
+
+![Alt big profiling](./images/pthreads_mpi/mediu_2_8_1.png)
+
+- 4 threaduri openmp 4 threaduri pthreads
+![Alt big profiling](./images/pthreads_mpi/mediu_4_4.png)
+
+![Alt big profiling](./images/pthreads_mpi/mediu_4_4_1.png)
+
+- 8 threaduri openmp 2 threaduri pthreads
+![Alt big profiling](./images/pthreads_mpi/mediu_8_2.png)
+
+![Alt big profiling](./images/pthreads_mpi/mediu_8_2_1.png)
+
+Aici, MPI-ul consuma o parte din timp in continuare, desi pentru algoritmul hidrid anterior timpii pe MPI incepeau sa scada. In plus, pentru profilingul in care sunt folosite 16 procese/threaduri niciodata nu se folosesc la maxim resursele obtinute, nici macar pentru testul cel mai mare.
+
+- Test mare (8192 x 8192):
+
+In testul mare se poate vedea o diferenta semnificativa a timpului de executie pentru cei doi algoritmi, din punct de vedere a combinatiei de threaduri/procese. pentru 4x4 timpul este dublu fata de openmp+mpi.
+
+![Alt big profiling](./images/pthreads_mpi/Execution_time_pthreads_MPI_mare.png)
+
+- 2 threaduri openmp 8 threaduri pthreads
+![Alt big profiling](./images/pthreads_mpi/mare_2_8.png)
+
+![Alt big profiling](./images/pthreads_mpi/mare_2_8_1.png)
+
+- 4 threaduri openmp 4 threaduri pthreads
+![Alt big profiling](./images/pthreads_mpi/mare_4_4.png)
+
+![Alt big profiling](./images/pthreads_mpi/mare_4_4_1.png)
+
+- 8 threaduri openmp 2 threaduri pthreads
+![Alt big profiling](./images/pthreads_mpi/mare_8_2.png)
+
+![Alt big profiling](./images/pthreads_mpi/mare_8_2_1.png)
+
+La fel ca la algortmul anterior, deja nu se mai observa diferente ale top-down tree-ului intre testul mediu si testul mare.
