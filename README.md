@@ -252,6 +252,8 @@ Atat pentru testul mare, cat si cel mediu se observa aceleasi tendinte in modifi
 
 ![Alt big profiling](./images/compare_mediu.png)
 
+![Alt big profiling](./images/compare_mare.png)
+
 </details>
 
 <details>
