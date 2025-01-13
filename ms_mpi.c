@@ -307,9 +307,9 @@ int main(int argc, char *argv[]) {
                MPI_COMM_WORLD);
 
         // Write the final image on rank 0
-        // if (rank == 0) {
-        //     write_ppm(final_image, argv[2]);
-        // }
+        if (rank == 0) {
+            write_ppm(final_image, argv[2]);
+        }
     }
 
     // // Free resources

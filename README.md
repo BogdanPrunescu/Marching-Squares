@@ -11,7 +11,9 @@ Programul construieste imagini care constituie conturul reliefului pentru diferi
 
 <img src="./images/test_image.jpg" width="400"/> <img src="./images/test_208.jpg" width="400"/>
 <img src="./images/test_136.jpg" width="400"/> <img src="./images/test_61.jpg" width="400"/>  
-## Week 1
+
+<details>
+<summary> Week 1</summary>
 
 - Creare repo github si README
 - Implementare cod serial:
@@ -32,7 +34,6 @@ Specs:
     - L2: 4 MiB (8 instances)
     - L3: 16 MiB (1 instance)
 - RAM: 16 GB
-
 
 ### Implementare secventiala
 
@@ -57,8 +58,10 @@ Profiling folosind Vtune:
 Variatie timp secvential dupa dimensiunea inputului:
 
 ![Alt big profiling](./images/seq/seq_execution_time.png)
+</details>
 
-## Week 2
+<details>
+<summary> Week 2 </summary>
 
 ### Implementare pthreads
 
@@ -120,8 +123,10 @@ Profiling:
         ![Alt big profiling](./images/pthreads/mare_pthreads_16_2.png)
     
     Se poate vedea ca pentru 16 threaduri sunt folosite cea mai mult din timp 16 threaduri.
+</details>
 
-## Week 3
+<details>
+<summary> Week 3 </summary>
 
 ### Implementare openmp
 
@@ -174,8 +179,10 @@ Profiling:
         ![Alt big profiling](./images/openmp/mare_openmp_16_1.png)
 
         ![Alt big profiling](./images/openmp/mare_openmp_16_2.png)
+</details>
 
-## Week 4
+<details>
+<summary> Week 4 </summary>
 
 ### Implementare mpi
 
@@ -247,7 +254,10 @@ Atat pentru testul mare, cat si cel mediu se observa aceleasi tendinte in modifi
 
 images/openmp_mpi/Execution_time_openmp_MPI_mic.gif
 
-## Week 5
+</details>
+
+<details>
+<summary> Week 5 </summary>
 
 ### Implementare openmp + mpi
 
@@ -320,7 +330,10 @@ Pentru testul mare, exista o imbunatarie a timpilor, dar nu asa de proeminenta c
 
 Din punct de vedere al profiling-ului, nu exista diferente majore intre observatiile de la testul mediu si rezultatele de la cel mare.
 
-## Week 6
+</details>
+
+<details>
+<summary> Week 6 </summary>
 
 ### Implementare pthreads + mpi
 
@@ -392,3 +405,5 @@ In testul mare se poate vedea o diferenta semnificativa a timpului de executie p
 ![Alt big profiling](./images/pthreads_mpi/mare_8_2_1.png)
 
 La fel ca la algortmul anterior, deja nu se mai observa diferente ale top-down tree-ului intre testul mediu si testul mare.
+
+</details>
