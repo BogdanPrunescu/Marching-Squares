@@ -252,8 +252,6 @@ Atat pentru testul mare, cat si cel mediu se observa aceleasi tendinte in modifi
 
 ![Alt big profiling](./images/compare_mediu.png)
 
-images/openmp_mpi/Execution_time_openmp_MPI_mic.gif
-
 </details>
 
 <details>
